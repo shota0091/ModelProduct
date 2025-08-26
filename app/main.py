@@ -2,6 +2,7 @@
 import discord
 from discord import app_commands
 from dotenv import load_dotenv
+from app.repositories.memory_profile import InMemoryProfileRepository
 import os
 
 from app.config import Config
@@ -14,6 +15,7 @@ class AppContext:
         self.intents = discord.Intents.default()
         self.client = discord.Client(intents=self.intents)
         self.tree = app_commands.CommandTree(self.client)
+        self.repo = InMemoryProfileRepository()
 
 ctx = AppContext()
 

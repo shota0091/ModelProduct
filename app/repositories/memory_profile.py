@@ -3,9 +3,11 @@ from app.models.profile import Profile
 from app.repositories.base import ProfileRepository
 
 class InMemoryProfileRepository(ProfileRepository):
+    """開発用：メモリ上の辞書で保存・取得する実装"""
+
     def __init__(self) -> None:
-        self._store: Dict[int, Profile] = {}
-        self._message_ids: Dict[int, int] = {}
+        self._store: Dict[int, Profile] = {}     # user_id -> Profile
+        self._message_ids: Dict[int, int] = {}   # user_id -> message_id
 
     # --- CRUD ---
     def get(self, user_id: int) -> Optional[Profile]:
